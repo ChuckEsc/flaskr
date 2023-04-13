@@ -11,7 +11,7 @@ def create_app(test_config=None):
     from . import blog
     from . import db
     db.init_app(app)
-    # app.register_blueprint(auth.bp)
+    app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
 
     app.config.from_mapping(

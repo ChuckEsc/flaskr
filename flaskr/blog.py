@@ -1,3 +1,5 @@
+import json
+
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 )
@@ -17,4 +19,14 @@ def index():
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    return jsonify(posts)
+    data = []
+    for post in posts:
+        data.append({
+            'id': post['id'],
+            'title': post['title'],
+            'body': post['body'],
+            'created': post['created'],
+            'author_id': post['author_id'],
+            'username': post['username']
+        })
+    return jsonify(data)

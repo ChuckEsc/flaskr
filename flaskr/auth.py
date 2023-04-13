@@ -37,7 +37,7 @@ def register():
 
         flash(error)  # 用于储存在渲染模块时可以调用的信息。
 
-    return render_template('auth/register.html')
+    return {'msg': 'success'}
 
 
 @bp.route('/login', methods=('GET', 'POST'))
@@ -63,7 +63,7 @@ def login():
 
         flash(error)
 
-    return render_template('auth/login.html')
+    return {'msg': 'success'}
 
 
 @bp.before_app_request
@@ -88,7 +88,7 @@ def load_logged_in_user():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return {'msg': 'success'}
 
 
 # 检查用户 是否已载入
